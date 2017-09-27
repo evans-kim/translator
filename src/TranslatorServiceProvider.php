@@ -23,8 +23,8 @@ class TranslatorServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/config/translator.php' => config_path('translator.php'),
-            __DIR__.'/migrations/0000_00_00_000000_create_translatable_table.php' => base_path("database/migrations/".$migname),
-                __DIR__.'/views/translations.blade.php' => resource_path("/view/vendor/translator/translation.blade.php")
+            __DIR__.'/migrations/0000_00_00_000000_create_translatable_table.php' => base_path("/database/migrations/".$migname),
+            __DIR__.'/views/translations.blade.php' => resource_path("/view/vendor/translator/translation.blade.php")
         ], 'translator');
 
 

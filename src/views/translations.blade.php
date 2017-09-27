@@ -20,7 +20,6 @@
     @endif
 </div>
 @section("scripts")
-    @parent
     <script type="text/javascript">
 
         $("#translations").select2({
@@ -56,5 +55,5 @@
             theme: "bootstrap"
         });
     </script>
-
+    @parent
 @endsection

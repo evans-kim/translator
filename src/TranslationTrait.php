@@ -42,8 +42,8 @@ trait TranslationTrait {
 
     /**
      * set translations into database
-     * @param $field - Matched field with Eloquent Model
-     * @param array $translations ['locale:value']
+     * @param $field
+     * @param array $translations
      */
     public function syncTranslation($field, Array $translations)
     {
@@ -51,13 +51,15 @@ trait TranslationTrait {
             foreach ( $translations as $trans ){
                 $temp = explode( config("translator.delimiter"), $trans);
                 $trans = ['locale'=>$temp[0], 'group'=>self::class, 'name'=>$field, 'value'=>$temp[1]];
-                $translation = Translation::where($trans)->delete();
+                $translation = Translation::where($trans)->first();
                 if(empty($translation)){
                     $translation = new Translation();
                     $translation->fill($trans);
                     $translation->save();
                 }
                 $ids[] = $translation->id;
+                // If some data were removed,
+                Translation::where( [['group', self::class], ['name', $field]] )->whereNotIn('id', $ids)->delete();
             }
             $this->translations()->sync($ids);
         }

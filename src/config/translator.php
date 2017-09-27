@@ -3,4 +3,5 @@
 return [
     'table' => 'translations',
     'delimiter' => ":",
+
 ];
