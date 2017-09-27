@@ -1,0 +1,45 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreatePivotClassTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create("PivotName", function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->unsignedInteger('Model1Pri');
+            $table->unsignedInteger('Model2Pri');
+
+            $table->index(["Model1Pri"], 'fk_PivotName_model1_idx');
+            $table->index(["Model2Pri"], 'fk_PivotName_model2_idx');
+
+            $table->foreign('Model1Pri', 'fk_PivotName_model1_idx')
+                ->references('M1Pid')->on('model1')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
+            $table->foreign('Model2Pri', 'fk_PivotName_model2_idx')
+                ->references('M2Pid')->on('model2')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists("PivotName");
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "name": "evans-kim/translator",
+    "description": "Translating Eloquent model Field for Laravel 5",
+    "type": "project",
+    "require": {
+        "laravel/laravel": "^5.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "evans kim",
+            "email": "ceo.evans@candleworks.co.kr"
+        }
+    ],
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "EvansKim\\Translator\\TranslatorServiceProvider"
+            ],
+            "aliases": {
+                "Translator": "EvansKim\\Translator\\Facades\\Translator"
+            }
+        }
+    }
+}
