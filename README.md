@@ -1,12 +1,12 @@
 # translator
 Laravel 5 Translator
 
- This is Laravel translator package for translating Eloquent "Field" (not data).
+ This is Laravel translator package for translating Eloquent Data.
  
 Install
  
     composer require evans-kim/translator
-    php artisan publish --tag=translator
+    php artisan vendor:publish --tag=translator
     php artisan migrate
     php artisan translator:install menus // the argument is database table name
 
@@ -17,7 +17,7 @@ And, Please add a trait in your Eloquent Model
         use TranslationTrait;
     }
 
-Sample - set translated field
+Sample
 
     $translations = ['kr:처음화면','en:Home']; // delimiter can be changed at config file. [locale:value] 
     $menu = Menu::find(1);
